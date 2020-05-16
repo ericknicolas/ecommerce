@@ -207,7 +207,7 @@
                   <!--Card image-->
                   <div class="view overlay">
                     <img src="{{ product.image }}" class="card-img-top" alt="">
-                    <a>
+                    <a href="{{ product.get_absolute_url }}">
                       <div class="mask rgba-white-slight"></div>
                     </a>
                   </div>
@@ -217,12 +217,12 @@
                 
                   <div class="card-body text-center">
                     <!--Category & Title-->
-                    <a href="" class="grey-text">
+                    <a href="{{ product.get_absolute_url }}" class="grey-text">
                       <h5>{{ product.category }}</h5>
                     </a>
                     <h5>
                       <strong>
-                        <a href="" class="dark-grey-text">{{ product.title }}
+                        <a href="{{ product.get_absolute_url }}" class="dark-grey-text">{{ product.title }}
                           <span class="badge badge-pill danger-color">NEW</span>
                         </a>
                       </strong>

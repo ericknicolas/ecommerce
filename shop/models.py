@@ -13,6 +13,6 @@ class Products(models.Model):
     def __str__(self):
         return self.title
 
-    #def get_absolute_url(self):
-    #    return reverse('product-detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('product', args=[str(self.id)])
 

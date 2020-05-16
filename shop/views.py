@@ -4,7 +4,7 @@ from django.views import generic
 from .models import Products
 
 
-class Home(generic.ListView):
+class HomeView(generic.ListView):
     model = Products
     template_name = 'shop/home.html'
     paginate_by = 8
@@ -21,3 +21,8 @@ class Home(generic.ListView):
             object_list = Products.objects.all()
 
         return object_list
+
+class ProductView(generic.DeleteView):
+    model = Products
+    template_name = 'shop/product.html'
+    context_object_name = 'product'
