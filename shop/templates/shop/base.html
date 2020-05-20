@@ -18,11 +18,12 @@
         {% endblock extra_style %}
         
     </head>
-
     <body>
+
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
             <div class="container">
+                
                 <!-- Brand -->
                 <a class="navbar-brand waves-effect" href="{% url 'home' %}">
                     <strong class="blue-text">DJECOMM</strong>
@@ -54,8 +55,10 @@
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a class="nav-link waves-effect">
-                                <span class="badge red z-depth-1 mr-1"> 1 </span>
+                            <a class="nav-link waves-effect" href="{% url 'checkout' %}">
+                                {% if request.session.cart %}
+                                    <span class="badge red z-depth-1 mr-1"> {{ request.session.cart|length }} </span>
+                                {% endif %}
                                 <i class="fas fa-shopping-cart"></i>
                                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                             </a>
