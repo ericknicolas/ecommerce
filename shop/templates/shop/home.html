@@ -163,15 +163,15 @@
 
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">All
+            <li class="nav-item {% if request.get_full_path == '/' %} active {% endif %}">
+              <a class="nav-link" href="{% url 'home' %}">All
                 <span class="sr-only">(current)</span>
               </a>
             </li>
 
-            {% for product in products_list %}
-              <li class="nav-item">
-                <a class="nav-link" href="#">{{ product.category }}</a>
+            {% for category in categories %}
+              <li class="nav-item {% if category in request.get_full_path %} active {% endif %}">
+                <a class="nav-link" href="{% url 'home' %}?category={{ category }}">{{ category }}</a>
               </li>
             {% endfor %}
 

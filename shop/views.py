@@ -2,14 +2,17 @@ from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
+from django_filters.views import FilterView
 
 from .models import Products
 from .forms import AddToCartForm
+from .filters import ItemFilter
 
 
-class HomeView(ListView):
+class HomeView(FilterView, ListView):
     model = Products
     template_name = 'shop/home.html'
+    filterset_class = ItemFilter
     paginate_by = 8
 
     def get_queryset(self):
@@ -24,6 +27,13 @@ class HomeView(ListView):
             object_list = Products.objects.all()
 
         return object_list
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context['categories'] = list(set([product.category for product in Products.objects.all()]))
+
+        return context
 
 
 class ProductView(FormMixin, DetailView):
