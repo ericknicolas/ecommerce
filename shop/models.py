@@ -16,3 +16,28 @@ class Products(models.Model):
     def get_absolute_url(self):
         return reverse('product', args=[str(self.id)])
 
+class Order(models.Model):
+    COUNTRIES = (
+        ('US', 'us'),
+        ('SPAIN', 'es'),
+    )
+
+    STATES = (
+        ('California', 'ca'),
+        ('Barcelona', 'bcn'),
+    )
+
+    first_name = models.CharField(max_length=100)
+    last_name =  models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    address = models.CharField(max_length=250)
+    country = models.CharField(max_length=100, choices=COUNTRIES)
+    state = models.CharField(max_length=100, choices=STATES)
+    zipcode = models.CharField(max_length=100)
+    items = models.CharField(max_length=1000)
+
+    def get_absolute_url(self):
+        return reverse('order', args=[str(self.id)])
+    
+    
+
